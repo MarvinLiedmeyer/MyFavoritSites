@@ -1,14 +1,20 @@
-.userInfo {
-  display: flex;
-  flex-direction: column;
-
-  p {
-    text-align: center;
-  }
-
-  .btnWrapper {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-  }
+.listsites{
+  background: white;
+  display: grid;
+  grid-template: repeat(50, 50px) / repeat(1, 1fr); 
+}
+.infoformular {
+  padding-top: 20px;
+}
+.formular {
+  background: white;
+  display: grid;
+  grid-template: repeat(4, 50px) / repeat(1, 1fr);
+}
+.newListItem {
+  background: limegreen;
+  margin-bottom: 10px;
+  border-block-color: black;
+  border-style: solid;
+  border-width: 2px;
 }
