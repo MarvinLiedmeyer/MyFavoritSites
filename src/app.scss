@@ -1,0 +1,12 @@
+.listItem {
+    padding: 5px;
+    display: flex;
+}
+.icon {
+    padding: 5px;
+    width: 52px;
+    height: 52px;
+}
+.listItem:not(:last-child) {
+    border-bottom: 1px solid black;
+}
