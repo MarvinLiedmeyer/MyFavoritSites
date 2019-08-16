@@ -1,0 +1,31 @@
+.listItem {
+    padding: 5px;
+    display: flex;
+}
+.icon {
+    margin: 4px;
+    width: 52px;
+    height: 52px;
+    border: 1px solid #66c5ec;
+}
+.listItem:not(:last-child) {
+    border-bottom: 1px solid #66c5ec;
+}
+.input {
+    width: 100%;
+}
+.formular {
+    padding: 16px;
+}
+.button {
+    margin: 16px;
+}
+
+.search {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.accordion--open .search {
+    opacity: 1;
+}
