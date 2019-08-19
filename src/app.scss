@@ -34,9 +34,11 @@
 
 .search {
     opacity: 0;
+    visibility: hidden;
     transition: opacity 500ms;
 }
 
 .accordion--open .search {
     opacity: 1;
+    visibility: visible;
 }
