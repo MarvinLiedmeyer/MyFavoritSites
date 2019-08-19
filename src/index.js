@@ -3,17 +3,15 @@ import "./app.scss";
 (function (tappProject, chayns, window, undefined) {
     'use strict';
 
-    $search = document.querySelector(".search");
-
+    let siteList = [];
 
     tappProject.init = function init(data) {
         chayns.ready.then(() => {
             chayns.ui.initAll();
 
-            $search.addEventListener('input', () => _search());
-            $search.addEventListener('change', () => _search());
-            $search.addEventListener('keypress', () => _search());
-            $search.addEventListener('paste', () => _search());
+            const $search = document.querySelector(".search");
+
+            $search.addEventListener('input', e => _search(e.target.value));
 
             _getFetchData();
 
@@ -25,8 +23,9 @@ import "./app.scss";
         listItem.className = "listItem";
         let icon = document.createElement("img");
         icon.alt = "icon";
-        icon.src = `https://sub60.tobit.com/l/${siteId}`;
+        icon.src = `https://sub60.tobit.com/l/${siteId}` 
         icon.className = "icon";
+        icon.onerror = () => document.querySelector(".icon").src = "https://i.ytimg.com/vi/XIMLoLxmTDw/hqdefault.jpg";
         listItem.appendChild(icon);
         let title = document.createElement("h3");
         title.className = "listItemTitle";
@@ -51,7 +50,11 @@ import "./app.scss";
     function _getFetchData() {
         fetch("https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=love&Skip=0&Take=50")
             .then((response) => { return response.json() })
-            .then((data) => { _createList(data.Data) })
+            .then((data) => {
+                siteList = data.Data;
+                console.log(siteList);
+                _createList(siteList);
+            })
             .catch((err) => { console.log(err) });
     }
 
@@ -63,14 +66,10 @@ import "./app.scss";
         }
     }
 
-    function _search() {
-        for (const listItem of listItem) {
-            if ((listItem.querySelector(listItem.title).innerHTML.toUpperCase())
-                .indexOf($search.value.toUpperCase()) > -1)
-                listItem.style.display = "";
-            else
-                listItem.style.display = "none";
-        }
+    function _search(searchText) {
+        document.querySelector(".sitelist").innerHTML = null;
+        let filterList = siteList.filter(e => e.appstoreName.includes(searchText));
+        _createList(filterList);
     }
 
 })((window.tappProject = {}), chayns, window);
